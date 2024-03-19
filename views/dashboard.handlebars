@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="/dashboard.css">
 </head>
 <body>
     {{> header}}
@@ -16,7 +17,7 @@
             {{#each posts}}
                 <li>
                     <a href="/post/{{id}}">{{title}}</a>
-                    <form action="/dashboard/post/{{id}}" method="POST">
+                    <form action="/dashboard/post/{{id}}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
                         <button type="submit">Delete</button>
                     </form>
                 </li>
@@ -32,6 +33,10 @@
         <textarea name="content" placeholder="Content"></textarea>
         <button type="submit">Create Post</button>
     </form>
+
+        {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+    {{/if}}
 
     {{> footer}}
 </body>

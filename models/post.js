@@ -9,7 +9,9 @@ const Post = sequelize.define('Post', {
   content: {
     type: DataTypes.TEXT,
     allowNull: false
-  }
+    }
+}, {
+  timestamps: true
 });
 
 module.exports = Post;

@@ -4,6 +4,10 @@ const User = require('../models/user');
 exports.signup = async (req, res) => {
   try {
     const { username, password } = req.body;
+     // Validate input
+     if (!username || !password) {
+      return res.status(400).json({ message: 'Username and password are required' });
+    }
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
     // Create a new user record
