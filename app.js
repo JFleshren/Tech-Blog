@@ -3,15 +3,15 @@ const sequelize = require('./config/database');
 const session = require('express-session');
 const authRouter = require('./routes/auth');
 const blogRouter = require('./routes/blog');
-const errorHandler = require('./middleware/errorHandler');
+const errorHandler = require('./errorHandler');
 const notFoundHandler = require('./middleware/notFoundHandler');
+const app = express();
 
 // Import models
 const User = require('./models/user');
 const Post = require('./models/post');
 const Comment = require('./models/comment');
 
-const app = express();
 app.set('trust proxy', 1);
 app.set('views', 'views');
 app.set('view engine', 'ejs');
@@ -28,6 +28,7 @@ app.use(session({
 
 app.use('/auth', authRouter);
 app.use('/blog', blogRouter); 
+app.use('/api', require('./routes')); 
 
 // Sync models with the database
 sequelize.sync({ force: false }).then(() => {
