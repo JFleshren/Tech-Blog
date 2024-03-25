@@ -79,6 +79,9 @@ exports.addComment = async (req, res) => {
   const { id } = req.params;
   const { content } = req.body;
   try {
+    if (!content) {
+      return res.status(400).send('Comment content is required');
+    }
     const post = await Post.findByPk(id);
     if (!post) {
       return res.status(404).send('Post not found');
