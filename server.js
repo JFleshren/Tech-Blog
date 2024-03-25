@@ -28,8 +28,7 @@ app.use(session({
 }));
 
 app.use('/auth', authRouter);
-app.use('/blog', blogRouter); 
-app.use('/api', require('./routes')); 
+app.use('/blog', blogRouter);  
 
 // Sync models with the database
 sequelize.sync({ force: false }).then(() => {
