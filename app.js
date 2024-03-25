@@ -5,6 +5,7 @@ const authRouter = require('./routes/auth');
 const blogRouter = require('./routes/blog');
 const errorHandler = require('./errorHandler');
 const notFoundHandler = require('./notFoundHandler');
+const exphbs = require('express-handlebars');
 const app = express();
 
 // Import models
@@ -14,7 +15,7 @@ const Comment = require('./models/comment');
 
 app.set('trust proxy', 1);
 app.set('views', 'views');
-app.set('view engine', 'ejs');
+app.set('view engine');
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
