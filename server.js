@@ -4,7 +4,7 @@ const session = require('express-session');
 const authRouter = require('./routes/auth');
 const blogRouter = require('./routes/blog');
 const errorHandler = require('./errorHandler');
-const notFoundHandler = require('./middleware/notFoundHandler');
+const notFoundHandler = require('./notFoundHandler');
 
 const app = express();
 

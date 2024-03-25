@@ -93,6 +93,19 @@ const blogController = {
     } catch (error) {
       console.error('Error adding comment:', error);
       res.status(500).send('Internal Server Error');
+    
+  }
+},
+
+  getDashboard: async (req, res) => {
+    try {
+      // Retrieve user-specific data for the dashboard
+      const userPosts = await Post.findAll({ where: { UserId: req.session.user.id } });
+      // Render the dashboard view with the user-specific data
+      res.render('dashboard', { userPosts });
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+      res.status(500).send('Internal Server Error');
     }
   }
 };

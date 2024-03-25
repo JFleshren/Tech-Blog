@@ -3,6 +3,7 @@ const router = express.Router();
 const blogController = require('../controllers/blogController');
 const { isAuthenticated } = require('../authMiddleware');
 
+
 router.get('/', blogController.getHomePage);
 router.get('/post/:id', blogController.getPost);
 router.get('/dashboard', isAuthenticated, blogController.getDashboard);

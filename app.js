@@ -4,7 +4,7 @@ const session = require('express-session');
 const authRouter = require('./routes/auth');
 const blogRouter = require('./routes/blog');
 const errorHandler = require('./errorHandler');
-const notFoundHandler = require('./middleware/notFoundHandler');
+const notFoundHandler = require('./notFoundHandler');
 const app = express();
 
 // Import models
@@ -27,8 +27,7 @@ app.use(session({
 }));
 
 app.use('/auth', authRouter);
-app.use('/blog', blogRouter); 
-app.use(require('./routes')); 
+app.use('/blog', blogRouter);  
 
 // Sync models with the database
 sequelize.sync({ force: false }).then(() => {
