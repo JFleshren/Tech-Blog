@@ -14,7 +14,7 @@ const Post = require('./models/post');
 const Comment = require('./models/comment');
 
 app.set('trust proxy', 1);
-app.set('vindexiews', 'views');
+app.set('views', 'views');
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'));

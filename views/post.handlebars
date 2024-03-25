@@ -13,6 +13,8 @@
 
     <h2>Comments</h2>
     {{#if post.comments.length}}
+    {{#if post.comments && post.comments.length}}
+    
         <ul>
             {{#each post.comments}}
                 <li>{{this.content}} - {{this.createdAt}}</li>
