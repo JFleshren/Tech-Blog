@@ -11,7 +11,7 @@ Start the application by running "npm start."
 
 ## Usage
 
-Run the application with "npm start." From here, users click any of the navigation links to go to the necessary page. 
+Run the application with "npm start." From here, users click any of the navigation links to go to the necessary page. Type into the text field and submit to create a blog post. From here, users may add comments or delete their comments.
 
 ## Credits
 
