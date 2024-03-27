@@ -36,9 +36,9 @@ app.use(session({
 // Define the home route
 router.get('/', async (req, res) => {
   try {
-    // Optional: Fetch data from your database here
-    // const postData = await Post.findAll({ include: [User] });
-    // const posts = postData.map((post) => post.get({ plain: true }));
+    // Fetch data from database here
+    const postData = await Post.findAll({ include: [User] });
+    const posts = postData.map((post) => post.get({ plain: true }));
 
     res.render('home', { /* pass your data here, e.g., posts: posts */ });
   } catch (err) {
