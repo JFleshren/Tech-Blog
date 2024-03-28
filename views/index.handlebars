@@ -1,0 +1,27 @@
+  <!-- Image -->
+  <section class="hero ">
+    <div class="">
+      <div class="container">
+        <div class="">
+          <div class="column is-8 is-offset-2 has-text-centered">
+            <h1 class="welcome-title">Welcome To the Blog</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Articles -->
+  <section class="hero ">
+    <div class="hero-body-neg">
+      <div class="container">
+        {{#each posts as |post|}}
+          {{#if @first}}
+            <!-- Don't post 1st one because it goes up top -->
+          {{else}}
+            {{> post-summary}}
+          {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  </section>
+  <script src='/js/index.js'></script>

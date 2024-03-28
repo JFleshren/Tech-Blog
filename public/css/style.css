@@ -1,0 +1,145 @@
+body {
+    background-color: #1a1a1a;
+    color: white;
+}
+
+nav.navbar {
+    background-color: #333333;
+    height: 6rem !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+}
+
+nav.navbar .navbar-item {
+    color: white;
+}
+nav.navbar .navbar-item:hover {
+    color: black;
+    background-color: rgb(150, 157, 163);
+
+}
+
+.navbar-item .main-logo {
+    max-height: 75%;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.hug {
+    margin-top: -3em;
+}
+
+.table-id {
+    width: 10%;
+}
+
+.table-title {
+    width: auto;
+}
+
+.table-edit {
+    width: 6%;
+}
+
+.table-delete {
+    width: 6%;
+}
+.hero-body {
+    min-height: 85vh;
+}
+
+.hero-body-neg {
+    margin-top: -3em;
+}
+
+.delete-comment {
+    text-decoration: underline;
+}
+
+.delete-comment:hover {
+    cursor: pointer;
+}
+
+.welcome-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px 10px;
+}
+
+h1.title a {
+    color: white;
+}
+
+h1.title a:hover {
+    color: rgb(207, 207, 207);
+}
+
+input[disabled]:-ms-input-placeholder {
+    color: white !important;
+}
+
+.auth-form {
+    background-color: #333;
+}
+
+label {
+    color: white !important;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 3px;
+    background-color: #444 !important;
+    color: #fff !important;
+}
+
+.post-title {
+    color: white;
+}
+
+textarea {
+    background-color: #444 !important;
+    color: white !important;
+}
+
+textarea:-ms-input-placeholder {
+    color: white !important;
+    background-color: white !important;
+}
+
+table {
+    background-color: #444 !important;
+    color: white;
+}
+
+table th, table td {
+    color: white !important;
+}
+
+table td a {
+    color: white;
+}
+
+table tr:hover {
+    background-color: #555 !important;
+}
+
+.table.is-striped tbody tr:not(.is-selected):nth-child(even) {
+    background-color: #444;
+}
+footer {
+    background-color: #333333 !important;
+    padding: 2rem 1rem !important;
+}
+
+footer strong {
+    color: white;
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 1025px) {
+    .navbar-item img {
+        max-height: 3em;
+    }
+}

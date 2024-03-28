@@ -1,65 +1,52 @@
-const express = require('express');
-const sequelize = require('./config/database');
-const session = require('express-session');
-const authRouter = require('./routes/auth');
-const blogRouter = require('./routes/blog');
-const exphbs = require('express-handlebars');
-const path = require('path');
+// Dependencies
+const express = require("express");
+const expressHandlebars = require("express-handlebars");
+const session = require("express-session");
+const path = require("path");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const sequelize = require("./config/connection");
+const controllers = require("./controllers");
+// Import the custom helper methods
+const helpers = require("./utils/helpers");
+// Incorporate the custom helper methods: ./utils/helpers.js
+const handlebars = expressHandlebars.create({ helpers });
+
+// Sets up the Express App
 const app = express();
+const PORT = process.env.PORT || 3002;
 
-// Setup router
-const router = express.Router();
+// Set up sessions
+const sess = {
+    secret: "Secret key goes here",
+    cookie: {
+        // Stored in milliseconds (86,400,000 === 1 day)
+        //28800000 = 8 hours
+        maxAge: 28800000,
+    },
+    resave: false,
+    saveUninitialized: false,
+    store: new SequelizeStore({
+        db: sequelize,
+    }),
+};
+app.use(session(sess));
 
-// Import models
-const User = require('./models/user');
-const Post = require('./models/post');
-const Comment = require('./models/comment');
+//setup handlebars with express
+app.engine("handlebars", handlebars.engine);
+app.set("view engine", "handlebars");
 
-// Set up Handlebars.js engine with default layout
-const hbs = exphbs.create({ defaultLayout: 'main' });
-
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
-app.set('views', path.join(__dirname, 'views'));
-
+//allow api to use json and url encoding
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: false }));
+//set public folder
+app.use(express.static(path.join(__dirname, "public")));
 
-app.use(session({
-  secret: process.env.SESSION_SECRET || 'secret-key',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true, maxAge: 600000 }
-}));
+// Sets up the routes
+app.use(controllers);
 
-// Define the home route
-router.get('/', async (req, res) => {
-  try {
-    // Fetch data from database here
-    const postData = await Post.findAll({ include: [User] });
-    const posts = postData.map((post) => post.get({ plain: true }));
 
-    res.render('home', { /* pass your data here, e.g., posts: posts */ });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// Use the router
-app.use(router);
-
-app.use('/auth', authRouter);
-app.use('/blog', blogRouter);
-
-// Sync models with the database
+// Starts the server to begin listening with sequelize for db connection
+//force start should be false if using 'npm run seed' to populate and create db as it will recreate tables each server reload
 sequelize.sync({ force: false }).then(() => {
-  console.log('Database synced');
-}).catch(err => {
-  console.error('Error syncing database:', err);
-});
-
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    app.listen(PORT, () => console.log("Now listening: " + PORT));
 });
